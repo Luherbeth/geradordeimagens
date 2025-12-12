@@ -207,6 +207,7 @@ interface LeftPanelProps {
   setIsApiKeySelected: (s: boolean) => void;
   enhancePromptApi: (prompt: string) => Promise<string>;
   onLogout: () => void;
+  onShowHistory: () => void;
 }
 
 const LeftPanel: React.FC<LeftPanelProps> = ({
@@ -214,7 +215,7 @@ const LeftPanel: React.FC<LeftPanelProps> = ({
   editFunction, setEditFunction, image1, setImage1, image2, setImage2, image3, setImage3, image4, setImage4,
   mask, setMask, aspectRatio, setAspectRatio, characterStyle, setCharacterStyle,
   headline, setHeadline, palette, setPalette, useGradient, setUseGradient,
-  isLoading, onGenerate, isApiKeySelected, setIsApiKeySelected, enhancePromptApi, onLogout
+  isLoading, onGenerate, isApiKeySelected, setIsApiKeySelected, enhancePromptApi, onLogout, onShowHistory
 }) => {
   const [isEnhancing, setIsEnhancing] = useState(false);
   const [isWatermarkModalOpen, setIsWatermarkModalOpen] = useState(false);
@@ -300,13 +301,22 @@ const LeftPanel: React.FC<LeftPanelProps> = ({
             <h1 className="panel-title text-2xl font-bold text-lime-400">Mestres AI Studio</h1>
             <p className="panel-subtitle text-sm text-gray-400">Gerador profissional de imagens e vídeos</p>
           </div>
-          <button
-            onClick={onLogout}
-            className="text-gray-500 hover:text-red-400 transition-colors text-xs border border-zinc-700 rounded px-2 py-1"
-            title="Sair"
-          >
-            Sair
-          </button>
+          <div className="flex gap-2">
+            <button
+              onClick={onShowHistory}
+              className="text-gray-500 hover:text-lime-400 transition-colors text-xs border border-zinc-700 rounded px-2 py-1 flex items-center gap-1"
+              title="Histórico"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 8v4l3 3"></path><circle cx="12" cy="12" r="10"></circle></svg>
+            </button>
+            <button
+              onClick={onLogout}
+              className="text-gray-500 hover:text-red-400 transition-colors text-xs border border-zinc-700 rounded px-2 py-1"
+              title="Sair"
+            >
+              Sair
+            </button>
+          </div>
         </header>
 
         {((mode === 'create' && !['start-end-video', 'character', 'instagram', 'fitting-room'].includes(createFunction)) || (mode === 'edit' && editFunction !== 'remove-watermark')) ? (

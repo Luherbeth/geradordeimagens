@@ -62,3 +62,18 @@ export const saveGeneration = async (
         throw error;
     }
 };
+
+export const getUserHistory = async (userId: string) => {
+    const { data, error } = await supabase
+        .from('user_generations')
+        .select('*')
+        .eq('user_id', userId)
+        .order('created_at', { ascending: false });
+
+    if (error) {
+        console.error('Error fetching history:', error);
+        return [];
+    }
+
+    return data;
+};

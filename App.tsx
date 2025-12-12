@@ -6,6 +6,7 @@ import { Auth } from './components/Auth';
 import { Mode, CreateFunction, EditFunction, ImageData, AspectRatio, GeneratedMedia } from './types';
 import LeftPanel from './components/LeftPanel';
 import RightPanel from './components/RightPanel';
+import { History } from './components/History';
 import { generateMediaApi, enhancePromptApi } from './services/geminiService';
 
 const dataURLtoFile = (dataurl: string, filename: string): File | null => {
@@ -215,6 +216,8 @@ export default function App() {
     await supabase.auth.signOut();
   };
 
+  const [showHistory, setShowHistory] = useState(false);
+
   if (!session) {
     return <Auth />;
   }
@@ -259,17 +262,22 @@ export default function App() {
           setIsApiKeySelected={setIsApiKeySelected}
           enhancePromptApi={enhancePromptApi}
           onLogout={handleLogout}
+          onShowHistory={() => setShowHistory(true)}
         />
       </div>
-      <div className={`${activePanel === 'left' ? 'hidden' : 'flex'} lg:flex flex-col flex-grow h-full`}>
-        <RightPanel
-          isLoading={isLoading}
-          generatedMedia={generatedMedia}
-          error={error}
-          originalImage={originalImageForCompare}
-          editCurrentImage={editCurrentImage}
-          resetStateForNewImage={resetStateForNewImage}
-        />
+      <div className={`${activePanel === 'left' ? 'hidden' : 'flex'} lg:flex flex-col flex-grow h-full relative`}>
+        {showHistory ? (
+          <History onClose={() => setShowHistory(false)} />
+        ) : (
+          <RightPanel
+            isLoading={isLoading}
+            generatedMedia={generatedMedia}
+            error={error}
+            originalImage={originalImageForCompare}
+            editCurrentImage={editCurrentImage}
+            resetStateForNewImage={resetStateForNewImage}
+          />
+        )}
       </div>
     </div>
   );

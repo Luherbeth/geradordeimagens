@@ -13,3 +13,11 @@ export interface GeneratedMedia {
   url: string;
   type: 'image' | 'video';
 }
+
+export interface GenerationHistoryItem {
+  id: number;
+  image_path: string;
+  prompt: string;
+  created_at: string;
+  options: any;
+}
