@@ -298,7 +298,7 @@ const LeftPanel: React.FC<LeftPanelProps> = ({
       <div className="left-panel w-full lg:w-[400px] flex-shrink-0 bg-zinc-900/70 border-r border-zinc-800 p-6 flex flex-col space-y-5 h-full overflow-y-auto">
         <header className="flex justify-between items-start">
           <div>
-            <h1 className="panel-title text-2xl font-bold text-lime-400">Mestres AI Studio</h1>
+            <h1 className="panel-title text-2xl font-bold text-lime-400">Ai Image Studio</h1>
             <p className="panel-subtitle text-sm text-gray-400">Gerador profissional de imagens e vídeos</p>
           </div>
           <div className="flex gap-2">

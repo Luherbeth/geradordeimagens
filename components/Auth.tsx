@@ -48,7 +48,7 @@ export const Auth = () => {
         <div className="min-h-screen flex items-center justify-center bg-zinc-950 px-4">
             <div className="w-full max-w-md bg-zinc-900 border border-zinc-800 p-8 rounded-xl shadow-2xl">
                 <div className="text-center mb-8">
-                    <h1 className="text-3xl font-bold text-lime-400 mb-2">Mestres AI Studio</h1>
+                    <h1 className="text-3xl font-bold text-lime-400 mb-2">Ai Image Studio</h1>
                     <p className="text-gray-400">
                         {isSignUp ? 'Crie sua conta para começar' : 'Entre para continuar criando'}
                     </p>
