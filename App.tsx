@@ -74,9 +74,14 @@ export default function App() {
   const [activePanel, setActivePanel] = useState<'left' | 'right'>('left');
 
   // API Key state
-  const [isApiKeySelected, setIsApiKeySelected] = useState(false);
+  const [isApiKeySelected, setIsApiKeySelected] = useState(!!process.env.API_KEY);
 
   const checkApiKey = useCallback(async () => {
+    if (process.env.API_KEY) {
+      setIsApiKeySelected(true);
+      return;
+    }
+
     // @ts-ignore
     if (window.aistudio?.hasSelectedApiKey) {
       // @ts-ignore
